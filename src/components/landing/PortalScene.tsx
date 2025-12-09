@@ -509,31 +509,66 @@ export default function PortalScene() {
           <Portal theme="lab" scale={portalScale} />
         </div>
 
-        {/* Lines connecting portals - dynamiques */}
+        {/* Lines connecting portals - vibrantes */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+          <defs>
+            <filter id="vibrate1">
+              <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="turbulence">
+                <animate attributeName="baseFrequency" values="0.02;0.04;0.02" dur="2s" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="3" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="vibrate2">
+              <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" result="turbulence">
+                <animate attributeName="baseFrequency" values="0.03;0.05;0.03" dur="1.8s" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="vibrate3">
+              <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="2" result="turbulence">
+                <animate attributeName="baseFrequency" values="0.025;0.045;0.025" dur="2.2s" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+          {/* Ligne 1: Top -> Bottom Left */}
           <motion.line
             x1={`${positions.top.x}%`} y1={`${positions.top.y}%`}
             x2={`${positions.bottomLeft.x}%`} y2={`${positions.bottomLeft.y}%`}
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
-            animate={{ opacity: [0.03, 0.12, 0.03] }}
-            transition={{ duration: 3, repeat: Infinity }}
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="1.5"
+            filter="url(#vibrate1)"
+            animate={{ 
+              opacity: [0.05, 0.15, 0.08, 0.12, 0.05],
+              strokeWidth: [1, 1.5, 1.2, 1.8, 1],
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
           />
+          {/* Ligne 2: Top -> Bottom Right */}
           <motion.line
             x1={`${positions.top.x}%`} y1={`${positions.top.y}%`}
             x2={`${positions.bottomRight.x}%`} y2={`${positions.bottomRight.y}%`}
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
-            animate={{ opacity: [0.03, 0.12, 0.03] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="1.5"
+            filter="url(#vibrate2)"
+            animate={{ 
+              opacity: [0.05, 0.12, 0.15, 0.08, 0.05],
+              strokeWidth: [1.2, 1, 1.8, 1.5, 1.2],
+            }}
+            transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
           />
+          {/* Ligne 3: Bottom Left -> Bottom Right */}
           <motion.line
             x1={`${positions.bottomLeft.x}%`} y1={`${positions.bottomLeft.y}%`}
             x2={`${positions.bottomRight.x}%`} y2={`${positions.bottomRight.y}%`}
-            stroke="rgba(255,255,255,0.08)"
-            strokeWidth="1"
-            animate={{ opacity: [0.03, 0.12, 0.03] }}
-            transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+            stroke="rgba(255,255,255,0.12)"
+            strokeWidth="1.5"
+            filter="url(#vibrate3)"
+            animate={{ 
+              opacity: [0.08, 0.05, 0.12, 0.15, 0.08],
+              strokeWidth: [1.5, 1.8, 1, 1.2, 1.5],
+            }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
           />
         </svg>
       </div>
