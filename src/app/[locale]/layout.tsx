@@ -10,16 +10,15 @@ export const metadata: Metadata = {
   description: 'Advanced AI tools and RAG systems for modern businesses.',
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+  params: { locale: string };
+};
 
-  if (!routing.locales.includes(locale as any)) {
+export default async function RootLayout({ children, params }: LayoutProps) {
+  const { locale } = params;
+
+  if (!routing.locales.includes(locale as 'en' | 'fr')) {
     notFound();
   }
 
