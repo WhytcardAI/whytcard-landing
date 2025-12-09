@@ -1,0 +1,13 @@
+{
+  "Landing": {
+    "hero": {
+      "title": "Build Faster",
+      "subtitle": "The ultimate starter kit"
+    },
+    "nav": {
+      "products": "Products",
+      "tools": "Tools",
+      "lab": "Lab"
+    }
+  }
+}

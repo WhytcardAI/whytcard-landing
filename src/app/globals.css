@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+  --color-dev: #e63946;
+  --color-ai: #2a7df0;
+  --color-lab: #8c4cff;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { max-width: 640px; }
+  @media (min-width: 768px) { max-width: 768px; }
+  @media (min-width: 1024px) { max-width: 1024px; }
+  @media (min-width: 1280px) { max-width: 1280px; }
+  @media (min-width: 1536px) { max-width: 1536px; }
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}

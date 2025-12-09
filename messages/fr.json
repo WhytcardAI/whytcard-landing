@@ -1,0 +1,13 @@
+{
+  "Landing": {
+    "hero": {
+      "title": "Construisez Plus Vite",
+      "subtitle": "Le kit de démarrage ultime"
+    },
+    "nav": {
+      "products": "Produits",
+      "tools": "Outils",
+      "lab": "Labo"
+    }
+  }
+}
